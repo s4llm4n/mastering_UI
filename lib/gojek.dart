@@ -54,7 +54,9 @@ class Gojek extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8,),
-            const Text('2.54 Km'),
+            const Text('2.54 Km',
+            
+            ),
             const Text(
               'Netflix',
               style: TextStyle(fontWeight: FontWeight.w500),
