@@ -53,16 +53,23 @@ class Gojek extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 8,),
-            const Text('2.54 Km',
-            
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  Text(
+                '2.54 Km',
+                style: TextStyle(color: Colors.grey[600]),
+              ),
+              const Text(
+                'Netflix',
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(height: 4,),
+              const Text('18 MB'),
+                ],
+              ),
             ),
-            const Text(
-              'Netflix',
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
-            const SizedBox(height: 4,),
-            const Text('18 MB'),
           ],
         ),
     );
