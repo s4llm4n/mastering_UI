@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mastering_ui/facebook.dart';
 import 'package:mastering_ui/gojek.dart';
+import 'package:mastering_ui/instagram.dart';
 import 'package:mastering_ui/play_store.dart';
 import 'package:mastering_ui/udemy.dart';
 
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
       // home: PlayStore(),
       // home: Facebook(),
       // home: Udemy(),
-      home: Gojek(),
+      // home: Gojek(),
+      home: Instagram(),
     );
   }
 }
