@@ -36,6 +36,7 @@ class Facebook extends StatelessWidget {
 
   Widget itemPost() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.all(8),
@@ -44,8 +45,8 @@ class Facebook extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(40),
                 child: Image.network('https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/jawapos/2019/01/salman-khan-tak-punya-resolusi-2019-ibunya-minta-hal-ini_m_.jpg',
-                width: 50,
-                height: 50,
+                width: 60,
+                height: 60,
                 fit: BoxFit.cover,
                 ),
               ),
@@ -84,7 +85,69 @@ class Facebook extends StatelessWidget {
             ],
           ),
         ),
-        
+        const Padding(
+          padding:  EdgeInsets.fromLTRB(8, 0, 8, 16),
+          child: Text('Travel to mountain very existed',),
+        ),
+        AspectRatio(
+          aspectRatio: 16 / 9,
+          child: Image.network(
+            'https://blog-media.lifepal.co.id/app/uploads/sites/3/2021/08/30152004/shutterstock_585257993.jpg',
+            fit: BoxFit.cover,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 70,
+                child: Stack(
+                  children: [
+                    const Positioned(
+                      left: 40,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.red,
+                        radius: 12,
+                        child: Icon(
+                          Icons.favorite,
+                          size: 13,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 20,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.black,
+                          shape: BoxShape.circle,
+                        ),
+                          child: const Icon(
+                          Icons.emoji_emotions,
+                          size: 24,
+                          color: Colors.yellow,
+                        ),
+                        ),
+                      ),
+                    const CircleAvatar(
+                      backgroundColor: Colors.blue,
+                      radius: 12,
+                      child: Icon(
+                        Icons.thumb_up,
+                        size: 13,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Text('19'),
+              const Spacer(),
+              const Text('15 Coment')
+            ],
+          ),
+        ),
       ],
     );
   }
