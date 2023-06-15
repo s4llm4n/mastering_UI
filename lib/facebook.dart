@@ -7,24 +7,85 @@ class Facebook extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Facebook')),
-      body: SizedBox(
-        height: 200,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 8,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.fromLTRB(
-                  index == 0 ? 16 :8, 
-                  16, 
-                  index == 7 ? 16 :8,
-                  16,
+      // body: SizedBox(
+      //   height: 200,
+      //   child: ListView.builder(
+      //       scrollDirection: Axis.horizontal,
+      //       itemCount: 8,
+      //       itemBuilder: (context, index) {
+      //         return Padding(
+      //           padding: EdgeInsets.fromLTRB(
+      //             index == 0 ? 16 :8, 
+      //             16, 
+      //             index == 7 ? 16 :8,
+      //             16,
+      //           ),
+      //           child: itemStory(),
+      //         );
+      //       },
+      //     ),
+      // ),
+      body: ListView.builder(
+          itemCount: 8,
+          itemBuilder: (context, index) {
+            return itemPost();
+          },
+        ),
+    );
+  }
+
+  Widget itemPost() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(40),
+                child: Image.network('https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/jawapos/2019/01/salman-khan-tak-punya-resolusi-2019-ibunya-minta-hal-ini_m_.jpg',
+                width: 50,
+                height: 50,
+                fit: BoxFit.cover,
                 ),
-                child: itemStory(),
-              );
-            },
+              ),
+              const SizedBox(width: 16,),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: const [
+                        Text(
+                          'Salman',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 8,),
+                        Icon(Icons.check_circle, size: 13, color: Colors.blue,)
+                      ],
+                    ),
+                    Row(
+                      children: const [
+                        Text(
+                          '43 Min',
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
+                        Text(
+                          ' * ',
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
+                        Icon(Icons.public, color: Colors.grey, size: 15,),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz)),
+            ],
           ),
-      ),
+        ),
+        
+      ],
     );
   }
 
