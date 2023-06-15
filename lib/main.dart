@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: PlayStore(),
-      home: Facebook(),
+      // home: Facebook(),
       // home: Udemy(),
       // home: Gojek(),
-      // home: Instagram(),
+      home: Instagram(),
       // home: Webtoon(),
     );
   }

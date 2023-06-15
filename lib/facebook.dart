@@ -148,6 +148,60 @@ class Facebook extends StatelessWidget {
             ],
           ),
         ),
+        const Divider(height: 1,),
+        Row(
+          children: [
+            Expanded(
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.thumb_up_alt_outlined, size: 20, color: Colors.grey,),
+                      SizedBox(width: 4,),
+                      Text('Like'),
+                    ], 
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.comment_outlined, size: 20, color: Colors.grey,),
+                      SizedBox(width: 4,),
+                      Text('Comment'),
+                    ], 
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.share, size: 20, color: Colors.grey),
+                      SizedBox(width: 4,),
+                      Text('Share'),
+                    ], 
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const Divider(height: 1,),
       ],
     );
   }

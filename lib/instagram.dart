@@ -7,22 +7,63 @@ class Instagram extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Instagram')),
+        // body: ListView.builder(
+        //   itemCount: 8,
+        //   itemBuilder: (context, index) {
+        //     return Padding(
+        //       padding: EdgeInsets.fromLTRB(
+                 
+        //         16, 
+        //         index == 0 ? 16 :8,
+                
+        //         16,
+        //         index == 7 ? 16 : 8,
+        //       ),
+        //       child: itemComment(),
+        //     );
+        //   },
+        // ),
         body: ListView.builder(
           itemCount: 8,
           itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.fromLTRB(
-                 
-                16, 
-                index == 0 ? 16 :8,
-                
-                16,
-                index == 7 ? 16 : 8,
-              ),
-              child: itemComment(),
-            );
+            return itemPost();
           },
         ),
+    );
+  }
+
+  Widget itemPost() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            const SizedBox(width: 8,),
+            Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.pink[600]!),
+              shape: BoxShape.circle,
+          ),
+          padding: const EdgeInsets.all(2),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(40),
+            child: Image.network(
+              'https://static.republika.co.id/uploads/images/inpicture_slide/082853700-1588046918-59323d9324cf5-salman-khanjpg.jpg',
+              width: 40,
+              height: 40,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.all(8),
+          child: Text('Salman'),
+        ),
+        const Spacer(),
+        IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
+        ],
+        ),
+      ],
     );
   }
 
