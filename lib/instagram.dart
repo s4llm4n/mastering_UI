@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Instagram extends StatelessWidget {
   const Instagram({ Key? key }) : super(key: key);
@@ -23,17 +24,71 @@ class Instagram extends StatelessWidget {
         //     );
         //   },
         // ),
-        body: ListView.builder(
-          itemCount: 8,
-          itemBuilder: (context, index) {
-            return itemPost();
-          },
+        // body: ListView.builder(
+        //   itemCount: 8,
+        //   itemBuilder: (context, index) {
+        //     return itemPost();
+        //   },
+        // ),
+        body: SizedBox(
+          height: 100,
+          child: ListView.builder(
+            itemCount: 8,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return itemStory();
+            },
+          ),
         ),
     );
   }
 
+  Widget itemStory() {
+    String imageUrl = 
+      'https://www.chiesapositano.com/wp-content/uploads/2022/01/travel-world.jpg';
+    return SizedBox(
+      height: 85,
+      width: 85,
+      child: Column(
+        children: [
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.pink[600]!, width: 2),
+              ),
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(85),
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover,
+                    width: 100,
+                    height: 100,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const Text('salman', maxLines: 1, overflow: TextOverflow.ellipsis,),
+        ],
+      ),
+    );
+  }
+
+
   Widget itemPost() {
+    PageController pageController = PageController();
+    List<String> listImage = [
+      'https://unimmafm.com/wp-content/uploads/2022/07/travel-022-1536x864.jpg',
+      'https://www.chiesapositano.com/wp-content/uploads/2022/01/travel-world.jpg',
+      'https://prod-virtuoso.dotcmscloud.com/dA/188da7ea-f44f-4b9c-92f9-6a65064021c1/heroImage1/PowerfulReasons_hero.jpg',
+      'https://img.okezone.com/content/2020/09/17/406/2279484/4-tips-traveling-ala-travel-blogger-emilia-tanova-Jhs2ffCuYT.jpg',
+    ];
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
@@ -46,7 +101,7 @@ class Instagram extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(2),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(40),
+            borderRadius: BorderRadius.circular(30),
             child: Image.network(
               'https://static.republika.co.id/uploads/images/inpicture_slide/082853700-1588046918-59323d9324cf5-salman-khanjpg.jpg',
               width: 40,
@@ -62,6 +117,102 @@ class Instagram extends StatelessWidget {
         const Spacer(),
         IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
         ],
+        ),   
+        SizedBox(
+          height: 300,
+          child: PageView.builder(
+            controller: pageController,
+            itemCount: listImage.length,
+            itemBuilder: (context, index) {
+              String imageUrl = listImage[index];
+              return AspectRatio(
+                aspectRatio: 16/9,
+                child: Image.network(imageUrl, fit: BoxFit.cover,),
+              );
+            },
+          ),
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 35,
+                    child: IconButton(
+                      onPressed: () {}, icon: const Icon(Icons.favorite_border)),
+                  ),
+                  SizedBox(
+                    width: 35,
+                    child: IconButton(
+                      onPressed: () {}, icon: const Icon(Icons.comment_outlined)),
+                  ),
+                  SizedBox(
+                    width: 35,
+                    child: IconButton(onPressed: () {}, icon: const Icon(Icons.send_outlined))),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                alignment: Alignment.center,
+                child: SmoothPageIndicator(
+                  controller: pageController, 
+                  count: listImage.length,
+                  effect: const WormEffect(
+                    dotHeight: 7,
+                    dotWidth: 8,
+                    spacing: 4,
+                  ),
+                  onDotClicked: (index) {},
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  onPressed: () {}, 
+                  icon: const Icon(Icons.bookmark_border),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            '1,238 Like',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: RichText(
+            textAlign: TextAlign.justify,
+            text: const TextSpan(
+              style: TextStyle(color: Colors.black),
+              children: [
+                TextSpan(
+                  text: 'salman',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                TextSpan(
+                  text: 'Smooth page indicator will inherit directionality from its ancestop unless you specify, Smooth page indicator will inherit directionality from its ancestop unless you specify',
+                ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
+          child: GestureDetector(
+            onTap: () {},
+            child: Text(
+              'Lihat semua 36 Komentar',
+              style: TextStyle(color: Colors.grey[600], fontSize: 12),
+            ),
+          ),
         ),
       ],
     );
