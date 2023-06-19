@@ -30,20 +30,98 @@ class Instagram extends StatelessWidget {
         //     return itemPost();
         //   },
         // ),
+        // body: SizedBox(
+        //   height: 100,
+        //   child: ListView.builder(
+        //     itemCount: 8,
+        //     scrollDirection: Axis.horizontal,
+        //     itemBuilder: (context, index) {
+        //       return Padding(
+        //         padding: EdgeInsets.fromLTRB(
+        //           index == 0? 16 : 8, 4, 
+        //           index == 7 ? 16 : 8, 4,
+        //         ),
+        //         child: itemStory(),
+        //       );
+        //     },
+        //   ),
+        // ),
         body: SizedBox(
-          height: 100,
+          height: 250,
           child: ListView.builder(
             itemCount: 8,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return itemStory();
+              return Padding(
+                padding: EdgeInsets.fromLTRB(
+                  index == 0? 16 : 8, 4, 
+                  index == 7 ? 16 : 8, 4,
+                ),
+                child: bannerItemStory(),
+              );
             },
           ),
         ),
     );
   }
 
+
+  Widget bannerItemStory() {
+    String imageUrl = 
+      'https://www.chiesapositano.com/wp-content/uploads/2022/01/travel-world.jpg';
+    
+    return SizedBox(
+      width: 150,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            bottom: 16,
+            left: 0,
+            right: 0,
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.pink[600]!, width: 2),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(85),
+                    child: Image.network(
+                      imageUrl,
+                      fit: BoxFit.cover,
+                      width: 60,
+                      height: 60,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 9),
+                const Text(
+                  'salman', 
+                  maxLines: 1, 
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
   Widget itemStory() {
+    bool isLive = true;
     String imageUrl = 
       'https://www.chiesapositano.com/wp-content/uploads/2022/01/travel-world.jpg';
     return SizedBox(
@@ -52,27 +130,60 @@ class Instagram extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.pink[600]!, width: 2),
-              ),
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(85),
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.cover,
-                    width: 100,
-                    height: 100,
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.pink[600]!, width: 2),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(85),
+                          child: Image.network(
+                            imageUrl,
+                            fit: BoxFit.cover,
+                            width: 100,
+                            height: 100,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                if (isLive) 
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.pink[700],
+                      border: Border.all(color: Colors.white, width: 2),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                      padding: 
+                        const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                      child: const Text(
+                        'LIVE',
+                        style: TextStyle(color: Colors.white, fontSize: 10,),
+                      ),
+                    ),
+                ),
+              ],
             ),
           ),
-          const Text('salman', maxLines: 1, overflow: TextOverflow.ellipsis,),
+          const SizedBox(height: 4,),
+          const Text(
+            'salman', 
+            maxLines: 1, 
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 9),
+          ),
         ],
       ),
     );
