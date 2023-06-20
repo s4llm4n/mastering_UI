@@ -46,24 +46,129 @@ class Instagram extends StatelessWidget {
         //     },
         //   ),
         // ),
-        body: SizedBox(
-          height: 250,
-          child: ListView.builder(
-            itemCount: 8,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.fromLTRB(
-                  index == 0? 16 : 8, 4, 
-                  index == 7 ? 16 : 8, 4,
+        // body: SizedBox(
+        //   height: 250,
+        //   child: ListView.builder(
+        //     itemCount: 8,
+        //     scrollDirection: Axis.horizontal,
+        //     itemBuilder: (context, index) {
+        //       return Padding(
+        //         padding: EdgeInsets.fromLTRB(
+        //           index == 0? 16 : 8, 4, 
+        //           index == 7 ? 16 : 8, 4,
+        //         ),
+        body: detailStory(),
+      );
+  }
+
+  Widget detailStory() {
+    String imageUrl = 
+      'https://wallpaperaccess.com/full/477378.jpg';
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.network(
+          imageUrl,
+          fit: BoxFit.cover,
+        ),
+        Column(
+          children: [
+            Row(
+              children: List.generate(4, (index) {
+                return Expanded(
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 4,
+                        margin: EdgeInsets.fromLTRB(
+                          index == 0 ? 16 : 8, 
+                          16, 
+                          index == 3 ? 16 : 8, 
+                          16,
+                        ),
+                        color: Colors.white.withOpacity(0.5),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 4,
+                        margin: EdgeInsets.fromLTRB(
+                          index == 0 ? 16 : 8, 
+                          16, 
+                          index == 3 ? 16 : 8, 
+                          16,
+                        ),
+                        color: index == 0 ? Colors.white : Colors.transparent,
+                      ),
+                    ],
+                  ),
+                );
+              }),
+            ),
+            Row(
+              children: [
+                const SizedBox(width: 16,),
+                ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                  child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                  width: 40,
+                  height: 40,
                 ),
-                child: bannerItemStory(),
-              );
-            },
+              ),
+              const SizedBox(width: 16,),
+              const Text(
+                  'salman', 
+                  maxLines: 1, 
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              const SizedBox(width: 16,),
+              const Text(
+                  '16 Hours ', 
+                  style: TextStyle(
+                    color: Colors.white54,
+                  ),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {}, 
+                  icon: const Icon(
+                    Icons.more_vert,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        Positioned(
+          left: 8,
+          bottom: 8,
+          right: 0,
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    isDense: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    hintText: 'Send Message',
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
+      ],
     );
-  }
+  } 
 
 
   Widget bannerItemStory() {
